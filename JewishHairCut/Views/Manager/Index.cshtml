@@ -1,0 +1,48 @@
+﻿@model JewishHairCut.ViewModel.VMActOptionBarber
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>רשימת ספרים ופעולות</h1>
+
+<p>
+    <a asp-action="AddOption">צור פעולה חדשה</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>ספרים</th>
+            <th>פעולות</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var barber in Model.barbers)
+        {
+            <tr>
+                <td>@barber.Name</td>
+                <td>
+                    @foreach (var act in barber.Acts)
+                    {
+                        <div>@act.Name</div>
+                    }
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<table class="table">
+    <thead>
+        <tr>
+            <th>פעולות אפשריות</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var actOption in Model.actOptions)
+        {
+            <tr>
+                <td>@actOption.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>

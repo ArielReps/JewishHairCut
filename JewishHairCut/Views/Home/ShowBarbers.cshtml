@@ -1,0 +1,38 @@
+﻿@model IEnumerable<JewishHairCut.Models.Barber>
+
+@{
+    ViewData["Title"] = "ShowBarbers";
+}
+
+<h1>ספרים</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                מספר סידורי
+            </th>
+            <th>
+                שם הספר
+            </th>
+            <th>לינקים</th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+            <tr>
+                <td>
+                @Html.DisplayFor(modelItem => item.ID)
+                   
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+                   
+            </td>
+            <td>
+                @Html.ActionLink("פרטי הספר", "DetailsOnBarber", new {ID = item.ID}) 
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
