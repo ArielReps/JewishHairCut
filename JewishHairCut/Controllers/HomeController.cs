@@ -64,5 +64,12 @@ namespace JewishHairCut.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+        public IActionResult OccupieAct(int ActID)
+        {
+            Act act = Data.Get.Acts.First(c => c.ID == ActID);
+            act.IsOccupied = true;
+            Data.Get.SaveChanges();
+            return RedirectToAction("ShowBarbers");
+        }
     }
 }

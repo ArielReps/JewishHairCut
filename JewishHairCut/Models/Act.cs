@@ -19,5 +19,13 @@ namespace JewishHairCut.Models
             Price = price;
             IsOccupied = isOccupied;
         }
+        public Act(string name, DateTime start, DateTime end, decimal price, bool isOccupied = false)
+        {
+            Name = name;
+            Start = start;
+            End = end;
+            Price = price;
+            IsOccupied = isOccupied;
+        }
     }
 }

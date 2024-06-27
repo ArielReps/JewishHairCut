@@ -65,8 +65,9 @@
                 האם תפוס
             </dt>
             <dd class="col-sm-10">
-                @(act.IsOccupied ? "תפוס" : "פנוי")
+                @(act.IsOccupied ? "תפוס" : Html.ActionLink("תפוס תור", "OccupieAct", new { ActID = act.ID  }))
             </dd>
+            
         }
     </dl>
 </div>
