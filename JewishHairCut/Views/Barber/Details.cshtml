@@ -4,34 +4,52 @@
     ViewData["Title"] = "Details";
 }
 
-<h1>Details</h1>
+<h1>@Model.Name</h1>
 
 <div>
-    <h4>Barber</h4>
+    <h4>@Model.PhoneNumber</h4>
     <hr />
     <dl class="row">
+        <h3>תורים</h3>
 
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.IsManager)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.IsManager)
-        </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+        @foreach (Act act in Model.Acts)
+        {
+            <div style="border:dotted">
+                <dt class="col-sm-2">
+                    פעולה
+                </dt>
+                <dd class="col-sm-10">
+                    @act.Name
+                </dd>
+                <dt class="col-sm-2">
+                    תאריך התחלה
+                </dt>
+                <dd class="col-sm-10">
+                    @act.Start.ToString()
+                </dd>
+                <dt class="col-sm-2">
+                    תאריך סיום
+                </dt>
+                <dd class="col-sm-10">
+                    @act.End.ToString()
+                </dd>
+                <dt class="col-sm-2">
+                    מחיר
+                </dt>
+                <dd class="col-sm-10">
+                    @act.Price
+                </dd>
+                <dt class="col-sm-2">
+                    האם תפוס
+                </dt>
+                <dd class="col-sm-10">
+                    @(act.IsOccupied ? "תפוס" :"עדיין לא נתפס")
+                </dd>
+            </div>
+        }
     </dl>
 </div>
 <div>
     @Html.ActionLink("הוספת תור", "AddActionToBarber", new { ID = Model.ID  }) |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">חזור לרשימת הספרים</a>
 </div>

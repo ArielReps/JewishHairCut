@@ -3,7 +3,7 @@
     ViewData["Title"] = "AddActionToBarber";
 }
 
-<h1>AddActionToBarber</h1>
+<h1>@Model.Barber.Name</h1>
 
 <h4>VMActionBarber</h4>
 <hr />
@@ -12,25 +12,23 @@
         <form asp-action="AddActionToBarber">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                
-
-            <label asp-for="Name" class="control-label"></label>
-            <select asp-for="Name" class="form-control">
-                @foreach (ActOption actoption in Model.ActOptions)
-                {
-                        <option value="@actoption.Name"> @actoption.Name</option>
-                }
-            </select>
-             <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="Name" class="control-label"></label>
+                <select asp-for="Name" class="form-control">
+                    @foreach (ActOption actoption in Model.ActOptions)
+                    {
+                        <option value="@actoption.Name">@actoption.Name</option>
+                    }
+                </select>
+                <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Start" class="control-label"></label>
-                <input asp-for="Start" class="form-control" />
+                <input asp-for="Start" class="form-control" id="start-time" />
                 <span asp-validation-for="Start" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="End" class="control-label"></label>
-                <input asp-for="End" class="form-control" />
+                <input asp-for="End" class="form-control" id="end-time" />
                 <span asp-validation-for="End" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -46,9 +44,25 @@
 </div>
 
 <div>
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Index">חזור לרשימת הספרים</a>
 </div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            let tomorrow = new Date();
+            tomorrow.setDate(tomorrow.getDate() + 1);
+
+            let startTime = new Date(tomorrow);
+            startTime.setHours(18, 0, 0, 0); // set to 18:00
+            document.getElementById('start-time').value = startTime.toISOString().slice(0, 16);
+
+            let endTime = new Date(tomorrow);
+            endTime.setHours(18, 30, 0, 0); // set to 18:30
+            document.getElementById('end-time').value = endTime.toISOString().slice(0, 16);
+        });
+    </script>
 }
